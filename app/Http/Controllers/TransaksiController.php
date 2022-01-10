@@ -35,7 +35,15 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Transaksi::create([
+            'santri_id' => $request->santri_id,
+            'asrama_id' => $request->asrama_id,
+            'detail_pembayaran' => $request->detail_pembayaran,
+            'nominal_pembayaran' => $request->nominal_pembayaran,
+            'bukti_pembayaran' => $request->bukti_pembayaran,
+            'tanggal_pembayaran' => $request->tanggal_pembayaran,
+        ]);
+        
     }
 
     /**
@@ -69,7 +77,14 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, Transaksi $transaksi)
     {
-        //
+        Transaksi::find($transaksi['id'])->update([
+            'santri_id' => $request->santri_id,
+            'asrama_id' => $request->asrama_id,
+            'detail_pembayaran' => $request->detail_pembayaran,
+            'nominal_pembayaran' => $request->nominal_pembayaran,
+            'bukti_pembayaran' => $request->bukti_pembayaran,
+            'tanggal_pembayaran' => $request->tanggal_pembayaran,
+        ]);
     }
 
     /**
@@ -80,6 +95,6 @@ class TransaksiController extends Controller
      */
     public function destroy(Transaksi $transaksi)
     {
-        //
+        Transaksi::find($transaksi['id'])->delete();
     }
 }

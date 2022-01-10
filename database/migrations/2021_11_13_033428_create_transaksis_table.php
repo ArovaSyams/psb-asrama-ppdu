@@ -15,8 +15,8 @@ class CreateTransaksisTable extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('santri_id');
-            $table->foreignId('asrama_id');
+            $table->foreignId('santri_id')->references('id')->on('santris')->onDelete('cascade');
+            $table->foreignId('asrama_id')->references('id')->on('asramas')->onDelete('cascade');
             $table->string('detail_pembayaran');
             $table->integer('nominal_pembayaran');
             $table->string('bukti_pembayaran');

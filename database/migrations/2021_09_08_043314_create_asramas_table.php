@@ -15,15 +15,15 @@ class CreateAsramasTable extends Migration
     {
         Schema::create('asramas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_asrama');
+            $table->string('nama');
             $table->integer('nomor_asrama')->unique();
             $table->string('pengasuh_asrama');
-            // $table->integer('jumlah_asrama');
             $table->integer('jumlah_santri');
-            $table->text('deskripsi_asrama');
+            $table->text('deskripsi');
             $table->integer('biaya_pendaftaran');
             $table->integer('biaya_perbulan');
-            $table->integer('kuota_pendaftaran');            
+            $table->integer('kuota_pendaftaran'); 
+            $table->timestamps();
         });
     }
 

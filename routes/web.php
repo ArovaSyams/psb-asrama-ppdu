@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AsramaController;
+use App\Http\Controllers\SantriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,26 @@ Route::get('/', function () {
 });
 
 Route::get('/asrama', [AsramaController::class, 'index']);
+Route::post('/asrama', [AsramaController::class, 'store']);
+
+Route::get('/asrama/{asrama}', [AsramaController::class, 'edit']);
+Route::post('/asrama/{asrama}', [AsramaController::class, 'update']);
+
+Route::delete('/asrama/{asrama}', [AsramaController::class, 'destroy']);
+
+
+Route::get('/santri', [SantriController::class, 'index']);
+Route::post('/santri', [SantriController::class, 'store']);
+
+Route::get('/santri/{santri}', [SantriController::class, 'edit']);
+Route::post('/santri/{santri}', [SantriController::class, 'update']);
+
+Route::delete('/santri/{santri}', [SantriController::class, 'destroy']);
+
+
+
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

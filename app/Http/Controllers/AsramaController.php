@@ -14,7 +14,7 @@ class AsramaController extends Controller
      */
     public function index()
     {
-        return view('crud.asrama', [
+        return view('crud.asrama.asrama', [
             'asrama' => Asrama::all()
         ]);
     }
@@ -37,7 +37,18 @@ class AsramaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Asrama::create([
+            'nama' => $request->nama,
+            'nomor_asrama' => $request->nomor_asrama,
+            'pengasuh' => $request->pengasuh,
+            'jumlah_santri' => $request->jumlah_santri,
+            'deskripsi' => $request->deskripsi,
+            'biaya_pendaftaran' => $request->biaya_pendaftaran,
+            'biaya_perbulan' => $request->biaya_perbulan,
+            'kuota_pendaftaran' => $request->kuota_pendaftaran,
+        ]);
+
+        return redirect('asrama');
     }
 
     /**
@@ -59,7 +70,9 @@ class AsramaController extends Controller
      */
     public function edit(Asrama $asrama)
     {
-        //
+        return view('crud.asrama.edit', [
+            'asrama' => $asrama
+        ]);
     }
 
     /**
@@ -71,7 +84,18 @@ class AsramaController extends Controller
      */
     public function update(Request $request, Asrama $asrama)
     {
-        //
+        Asrama::find($asrama['id'])->update([
+            'nama' => $request->nama,
+            'nomor_asrama' => $request->nomor_asrama,
+            'pengasuh' => $request->pengasuh,
+            'jumlah_santri' => $request->jumlah_santri,
+            'deskripsi' => $request->deskripsi,
+            'biaya_pendaftaran' => $request->biaya_pendaftaran,
+            'biaya_perbulan' => $request->biaya_perbulan,
+            'kuota_pendaftaran' => $request->kuota_pendaftaran,
+        ]);
+
+        return redirect('asrama');
     }
 
     /**
@@ -82,6 +106,8 @@ class AsramaController extends Controller
      */
     public function destroy(Asrama $asrama)
     {
-        //
+        Asrama::find($asrama['id'])->delete();
+
+        return redirect()->back();
     }
 }

@@ -16,12 +16,11 @@ class CreateSantrisTable extends Migration
         Schema::create('santris', function (Blueprint $table) {
             $table->id();
             $table->string('nama_santri');
-            $table->foreignId('asrama_id');
+            $table->foreignId('asrama_id')->references('id')->on('asramas')->onDelete('cascade');
             $table->string('alamat');
             $table->string('unit_pendidikan');
             $table->string('nama_ayah');
             $table->string('nama_ibu');
-            $table->date('tanggal_pendaftaran');
             $table->timestamps();
         });
     }

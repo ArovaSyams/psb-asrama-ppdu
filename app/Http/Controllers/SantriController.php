@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asrama;
 use App\Models\Santri;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,10 @@ class SantriController extends Controller
      */
     public function index()
     {
-        return view('crud.santri', [
-            'santri' => Santri::
-        ])
+        return view('crud.santri.santri', [
+            'santri' => Santri::all(),
+            'asrama' => Asrama::all()
+        ]);
     }
 
     /**
@@ -37,7 +39,16 @@ class SantriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Santri::create([
+            'nama_santri' => $request->nama_santri,
+            'asrama_id' => $request->asrama_id,
+            'alamat' => $request->alamat,
+            'unit_pendidikan' => $request->unit_pendidikan,
+            'nama_ayah' => $request->nama_ayah,
+            'nama_ibu' => $request->nama_ibu
+        ]);
+
+        return redirect('santri');
     }
 
     /**
@@ -59,7 +70,10 @@ class SantriController extends Controller
      */
     public function edit(Santri $santri)
     {
-        //
+        return view('crud.santri.edit', [
+            'santri' => $santri,
+            'asrama' => Asrama::all()
+        ]);
     }
 
     /**
@@ -71,7 +85,16 @@ class SantriController extends Controller
      */
     public function update(Request $request, Santri $santri)
     {
-        //
+        Santri::find($santri['id'])->update([
+            'nama_santri' => $request->nama_santri,
+            'asrama_id' => $request->asrama_id,
+            'alamat' => $request->alamat,
+            'unit_pendidikan' => $request->unit_pendidikan,
+            'nama_ayah' => $request->nama_ayah,
+            'nama_ibu' => $request->nama_ibu
+        ]);
+
+        return redirect('santri');
     }
 
     /**
@@ -82,6 +105,8 @@ class SantriController extends Controller
      */
     public function destroy(Santri $santri)
     {
-        //
+        Santri::find($santri['id'])->delete();
+
+        return redirect()->back();
     }
 }
